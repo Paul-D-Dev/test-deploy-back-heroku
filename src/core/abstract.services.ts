@@ -18,6 +18,7 @@ export abstract class AbstractService {
     }
 
     async create(element: any) {
+        element = this.repository.create(element);
         return await this.repository.save(element);
     }
 
