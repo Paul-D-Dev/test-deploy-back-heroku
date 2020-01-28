@@ -14,7 +14,6 @@ export class UserService {
   }
 
   async post(user: any)  {
-    console.log(user);
     return await this.repository.save(user);
   }
 

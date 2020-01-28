@@ -1,9 +1,7 @@
 import express from 'express';
 import 'reflect-metadata';
-
-import loaders from './loaders';
-import { SportController } from './controller/sport.controller';
 import { UserController } from './controller/user.controller';
+import loaders from './loaders';
 
 async function startServer() {
     // Récupération de l'application initiale
@@ -13,7 +11,6 @@ async function startServer() {
     await loaders(app);
 
     // Ajout des différentes route de votre application
-    SportController(app);
     UserController(app);
 
     // Démarrage du serveur une fois que tout est correctement init
