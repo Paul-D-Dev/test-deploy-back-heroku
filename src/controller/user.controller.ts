@@ -1,3 +1,4 @@
+import { commonController } from './../core/common_functions.controller';
 import { Application, Router, Request, Response } from 'express';
 import { UserService } from '../services/user.service';
 
@@ -11,16 +12,10 @@ import { UserService } from '../services/user.service';
 export const UserController = (app: Application) => {
   const userService = new UserService();
 
-  const userRouter = Router();
+  let userRouter = Router();
 
-  userRouter.get('/', async (req: Request, res: Response) => {
-    res.send(await userService.getAll());
-  });
+  userRouter = commonController(userService, userRouter);
 
-  userRouter.post('/', async (req: Request, res: Response) => {
-    res.send(await userService.post(req.body));
-  });
-
-  app.use('/user', userRouter);
+  app.use('/users', userRouter);
 
 };

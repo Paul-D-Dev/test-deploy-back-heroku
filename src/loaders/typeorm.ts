@@ -15,6 +15,6 @@ export default async () => {
             User,
 
         ],
-        synchronize: false,
+        synchronize: true,
     });
     };
