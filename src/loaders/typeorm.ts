@@ -9,7 +9,7 @@ export default async () => {
         host: process.env.LOCAL_DB_LOCALHOST,
         username: process.env.LOCAL_DB_USER,
         password: process.env.LOCAL_DB_PASSWORD,
-        database: 'node',
+        database: 'checkpoint4',
         entities: [
             // Ecrire tous noms des tables Entities
             User,
