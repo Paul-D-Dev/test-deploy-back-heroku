@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { User } from '../entity/user.entity';
+import { Sport } from '../entity/sport.entity';
 
 export default async () => {
 
@@ -13,6 +14,7 @@ export default async () => {
         entities: [
             // Ecrire tous noms des tables Entities
             User,
+            Sport,
 
         ],
         synchronize: true,

@@ -1,3 +1,4 @@
+import { getCustomRepository } from 'typeorm';
 import { SportRepository } from '../repository/sport.repository';
 /**
  * Cette classe est un service
@@ -6,32 +7,23 @@ import { SportRepository } from '../repository/sport.repository';
  */
 export class SportService {
 
-    // Make service => singletonTransformation de notre service en singleton
-    private static instance: SportService;
-    static getInstance() {
-        if (!this.instance) {
-            this.instance = new SportService();
-        }
-        return this.instance;
-    }
-
-    // Un singeleton est une class ayant une instance unique a travers toute l'app
-    private repository: SportRepository;
-    private constructor() {
-        this.repository = SportRepository.getInstance();
-    }
+    protected repository = getCustomRepository(SportRepository);
 
     // Business logic
 
     getAll() {
-        return this.repository.findAll();
+        return this.repository.find();
     }
 
     getById(id: number) {
-        // return this.repository.findById(id);
+        return this.repository.findOne(id);
     }
 
     addSport(sport: any) {
-        // return this.repository.save(sport);
+        return this.repository.save(sport);
+    }
+
+    delete(id: number) {
+        return this.repository.delete(id);
     }
 }

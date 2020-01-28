@@ -18,7 +18,6 @@ export const UserController = (app: Application) => {
   });
 
   userRouter.post('/', async (req: Request, res: Response) => {
-
     res.send(await userService.post(req.body));
   });
 

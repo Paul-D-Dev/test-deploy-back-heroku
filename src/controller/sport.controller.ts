@@ -1,5 +1,5 @@
-import { SportService } from '../services/sport.service';
-import express, { Router, Request, Response, Application } from 'express';
+import { Application, Request, Response, Router } from 'express';
+import { SportService } from './../services/sport.service';
 
 /**
  * Ce controller vous servira de modèle pour construire vos différent controller
@@ -10,22 +10,25 @@ import express, { Router, Request, Response, Application } from 'express';
  */
 export const SportController = (app: Application) => {
 
-    const sportsRouter: Router = express.Router();
-    const sportService = SportService.getInstance();
+    const sportService = new SportService();
+    const sportsRouter: Router = Router();
 
-    sportsRouter.get('/', (req: Request, res: Response) => {
-        res.send(sportService.getAll());
+    sportsRouter.get('/', async (req: Request, res: Response) => {
+        res.send(await sportService.getAll());
     });
 
     sportsRouter.get('/:id', (req: Request, res: Response) => {
         res.send(sportService.getById(parseInt(req.params.id, 10)));
     });
 
-    sportsRouter.post('/', (req: Request, res: Response) => {
-        const sport = req.body;
-        sportService.addSport(sport);
-        res.send(sport);
+    sportsRouter.post('/', async (req: Request, res: Response) => {
+        await sportService.addSport(req.body);
+        res.sendStatus(200);
+    });
 
+    sportsRouter.delete('/:id', (req: Request, res: Response) => {
+        sportService.delete(parseInt(req.params.id, 10));
+        res.send('Delete').status(200);
     });
 
     app.use('/sport', sportsRouter);
