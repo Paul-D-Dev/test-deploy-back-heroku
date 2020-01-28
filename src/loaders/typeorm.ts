@@ -1,4 +1,5 @@
 import { createConnection } from 'typeorm';
+import { User } from '../entity/user.entity';
 
 export default async () => {
 
@@ -11,8 +12,9 @@ export default async () => {
         database: 'node',
         entities: [
             // Ecrire tous noms des tables Entities
+            User,
 
         ],
-        synchronize: false,
+        synchronize: true,
     });
     };
