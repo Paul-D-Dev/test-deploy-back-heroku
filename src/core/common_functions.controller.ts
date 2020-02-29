@@ -21,8 +21,8 @@ export const commonController = (service: AbstractService, commonRouter = Router
       res.send(user);
 
     } catch (error) {
-      if (error.message === 'USER NOT FOUND') {
-        res.status(400).send(`Aucun utilisateur`);
+      if (error.message === 'NOT FOUND') {
+        res.status(400).send(`REQUETE NON TROUVE`);
       }
     }
   });
@@ -35,14 +35,14 @@ export const commonController = (service: AbstractService, commonRouter = Router
     const id = parseInt(req.params.id, 10);
     const formData = req.body;
     await service.update(id, formData);
-    res.send(`L'utilisateur ${id} a bien été modifié`);
+    res.send(`La demande ${id} a bien été modifiée`);
 
   });
 
   commonRouter.delete('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id, 10);
     await service.delete(id);
-    res.send(`L'utilisateur ${id} a bien été supprimé`);
+    res.send(`La demande ${id} a bien été supprimée`);
   });
 
   return commonRouter;
