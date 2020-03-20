@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { User } from '../entity/user.entity';
+import { Token } from './../entity/token.entity';
 /**
  * Cette classe est un repository
  * C'est ici qu'on met tout les accès à la bdd
@@ -7,7 +7,7 @@ import { User } from '../entity/user.entity';
  * Il s'agit seulement de la couche de récupération des données (requete sql)
  */
 
-@EntityRepository(User)
-export class UserRepository extends Repository<User> {
+@EntityRepository(Token)
+export class TokenRepository extends Repository<Token> {
 
 }

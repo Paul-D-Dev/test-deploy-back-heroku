@@ -1,3 +1,4 @@
+import { AuthController } from './controller/auth.controller';
 import express from 'express';
 import 'reflect-metadata';
 import { UserController } from './controller/user.controller';
@@ -12,6 +13,7 @@ async function startServer() {
 
     // Ajout des différentes route de votre application
     UserController(app);
+    AuthController(app);
 
     // Démarrage du serveur une fois que tout est correctement init
     app.listen(3000, () => console.log('Express server  is running 3000'));
