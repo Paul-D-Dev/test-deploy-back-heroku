@@ -1,5 +1,4 @@
 import express, { Application, Request, Response, Router } from 'express';
-import { TokenService } from '../services/token.service';
 import { AuthService } from './../services/auth.service';
 
 /**
@@ -13,7 +12,6 @@ export const AuthController = (app: Application) => {
 
   const authRouter: Router = express.Router();
   const authService = new AuthService();
-  const tokenService = new TokenService();
 
   authRouter.post('/signup', async (req: Request, res: Response) => {
     const user = req.body;
@@ -54,19 +52,6 @@ export const AuthController = (app: Application) => {
       } else {
         res.status(400).send('L\'email ou le mot de passe est erroné');
       }
-    }
-  });
-  // Faire error pour connection
-
-  // Verification du user
-  authRouter.post('/verification', async (req: Request, res: Response) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    try {
-      const user = await authService.verif(email, password);
-      res.send(user);
-    } catch (error) {
-      res.status(400).send('L\'email ou le mot de passe est erroné');
     }
   });
 

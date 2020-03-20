@@ -71,19 +71,22 @@ export class AuthService {
     if (!user) { // Si pas user
       throw labelError;
     }
+
     const isValid = await verify(user.password, password);
     if (!isValid) {
       throw labelError;
     }
 
-    const secret1 = JWT_SECRET;
-    if (!secret1) {
+    const secret = JWT_SECRET;
+    if (!secret) {
       throw new Error('Pas de secret SETUP');
     }
+
     delete user.password;
+
     const token = sign( // from jsonwebtoken
       { id: user.id, username: user.username, email: user.email }, // id, username, role dans sign PAS DE PASSWORD !
-      secret1); // PrivateKey à entrer comme une variable environnement
+      secret); // PrivateKey à entrer comme une variable environnement
     return { token, user };
   }
 
@@ -134,31 +137,6 @@ export class AuthService {
     // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-  }
-
-  // Test verification user
-  async verif(email: string, password: string) {
-    const labelError = new Error('Invalide crendentials');
-    const user = await this.userRepository.findOne({
-        where: { email },
-        select: ['id', 'password', 'email', 'activated', 'username'],
-    });
-
-    if (!user) { // Si pas user
-      throw labelError;
-    }
-    const isValid = await verify(user.password, password);
-    if (!isValid) {
-      throw labelError;
-    }
-
-    const secret1 = JWT_SECRET;
-    if (!secret1) {
-      throw new Error('Pas de secret SETUP');
-    }
-    delete user.password;
-
-    return user;
   }
 
 }
