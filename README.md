@@ -7,24 +7,24 @@ If you have any difficulties to install argon2, you might install more thing. Th
 After the node_modules installed, you have to create a folder **config** into **src** folder.
 In the config folder, create 2 files : **config-dbb.ts** and **jwt-secret.ts**.
 
-    > src
-        > config
-              - config-dbb.ts
-              - jwt-secret.ts
-        > controller
-        > ...
+>     src
+>         config
+>              - config-dbb.ts
+>              - jwt-secret.ts
+>         controller
+>         ...
 
 The config-dbb.ts is the file where you config your database
 
 An exemple to describe the file : 
 
-    > export const DATABASE = {
-        > host: 'localhost',
-        > username: 'root', 
-        > password: 'root',
-        > database: 'db',
-        > port: 3006,
-    > };
+> export const DATABASE = {
+>    host: 'localhost',
+>    username: 'root', 
+>    password: 'root',
+>    database: 'db',
+>    port: 3006,
+>    };
 
 Adapt the object DATABASE following your database's config.
 
@@ -33,7 +33,7 @@ The jwt-secret.ts is the file where you initialize the constant JWT_SECRET.
 
 An example : 
 
-    > export const JWT_SECRET = 'azerTYTYUIOP12693193';
+> export const JWT_SECRET = 'azerTYTYUIOP12693193';
 
 
 
