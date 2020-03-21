@@ -17,7 +17,7 @@ In the config folder, create 2 files : "config-dbb.ts" and "jwt-secret.ts".
 The config-dbb.ts is the file where you config your database
 
 An exemple to describe the file : 
-    export const DATABASE = {
+    > export const DATABASE = {
         host: 'localhost',
         username: 'root', 
         password: 'root',
@@ -31,7 +31,7 @@ Adapt the object DATABASE following your database's config.
 The jwt-secret.ts is the file where you initialize the constant JWT_SECRET.
 
 An example : 
-    export const JWT_SECRET = 'azerTYTYUIOP12693193';
+    > export const JWT_SECRET = 'azerTYTYUIOP12693193';
 
 
 
