@@ -18,13 +18,13 @@ The config-dbb.ts is the file where you config your database
 
 An exemple to describe the file : 
 
-> export const DATABASE = {
->    host: 'localhost',
->    username: 'root', 
->    password: 'root',
->    database: 'db',
->    port: 3006,
->    };
+>   export const DATABASE = {
+>       host: 'localhost',
+>       username: 'root', 
+>       password: 'root',
+>       database: 'db',
+>       port: 3006,
+>   };
 
 Adapt the object DATABASE following your database's config.
 
