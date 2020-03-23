@@ -1,4 +1,4 @@
-import { DATABASE } from '../config/config-dbb';
+import { DATABASE } from '../config/config-db';
 import { createConnection } from 'typeorm';
 import { User } from '../entity/user.entity';
 import { Token } from '../entity/token.entity';

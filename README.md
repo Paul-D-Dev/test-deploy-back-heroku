@@ -5,11 +5,11 @@ Before to launch the api, you need to install all dependancies :
 If you have any difficulties to install argon2, you might install more thing. This is the documentation and check [Before installing](https://www.npmjs.com/package/argon2)
 
 After the node_modules installed, you have to create a folder **config** into **src** folder.
-In the config folder, create 2 files : **config-dbb.ts** and **jwt-secret.ts**.
+In the config folder, create 2 files : **config-db.ts** and **jwt-secret.ts**.
 
 >     src
 >         config
->              - config-dbb.ts
+>              - config-db.ts
 >              - jwt-secret.ts
 >         controller
 >         ...

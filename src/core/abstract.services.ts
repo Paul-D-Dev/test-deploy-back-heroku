@@ -10,11 +10,11 @@ export abstract class AbstractService {
     }
 
     async getById(id: number) {
-        const user = await this.repository.findOne(id);
-        if (!user) {
-            throw new Error('USER NOT FOUND');
+        const element = await this.repository.findOne(id);
+        if (!element) {
+            throw new Error('REQUEST NOT FOUND');
         }
-        return user;
+        return element;
     }
 
     async create(element: any) {
