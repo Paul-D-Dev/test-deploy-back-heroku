@@ -3,12 +3,12 @@ import { randomBytes } from 'crypto';
 import { sign } from 'jsonwebtoken';
 import { createTestAccount, createTransport, getTestMessageUrl } from 'nodemailer';
 import { getCustomRepository } from 'typeorm';
-import { JWT_SECRET } from '../config/jwt-secret';
 import { User } from '../entity/user.entity';
 import { UserRepository } from '../repository/user.repository';
 import { Token } from './../entity/token.entity';
 import { TokenService } from './token.service';
 import { UserService } from './user.service';
+require('dotenv').config();
 
 export class AuthService {
 
@@ -77,7 +77,7 @@ export class AuthService {
       throw labelError;
     }
 
-    const secret = JWT_SECRET;
+    const secret = process.env.JWT_SECRET;
     if (!secret) {
       throw new Error('Pas de secret SETUP');
     }
