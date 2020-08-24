@@ -59,12 +59,12 @@ export class AuthService {
 
     const user = await this.userRepository.findOne({
       where: { email },
-      select: ['id', 'password', 'email', 'activated', 'username'],
+      select: ['id', 'password', 'email', 'isActive', 'firstname', 'role'],
     });
 
     // Si il n'y a pas eu d'activation de compte, renvoi l'erreur NOT ACTIVE
-    // Si il y a activated true => continue la méthode signin
-    if (!user?.activated) {
+    // Si il y a isActive true => continue la méthode signin
+    if (!user?.isActive) {
       throw new Error('NOT ACTIVE');
     }
 
@@ -85,7 +85,7 @@ export class AuthService {
     delete user.password;
 
     const token = sign( // from jsonwebtoken
-      { id: user.id, username: user.username, email: user.email }, // id, username, role dans sign PAS DE PASSWORD !
+      { id: user.id, username: user.firstname, email: user.email, role: user.role }, // id, username, role dans sign PAS DE PASSWORD !
       secret); // PrivateKey à entrer comme une variable environnement
     return { token, user };
   }
@@ -126,7 +126,7 @@ export class AuthService {
       to: user.email, // list of receivers
       subject: 'Activation link', // Subject linew
       text: 'Hello world?', // plain text body
-      html: `<b> Hello ${user.username} <a href="http://localhost:3000/auth/confirmation/${token}">
+      html: `<b> Hello ${user.firstname} <a href="http://localhost:3000/auth/confirmation/${token}">
         Activation link </a>
         </b>`, // html body
     });
@@ -137,6 +137,8 @@ export class AuthService {
     // Preview only available when sending through an Ethereal account
     console.log('Preview URL: %s', getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+    return getTestMessageUrl(info);
   }
 
 }

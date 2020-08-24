@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Code } from './code.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Attempt } from './attempt.entity';
 
 export enum UserRole {
     GHOST = 'ghost',
@@ -13,13 +15,19 @@ export class User {
     id!: number;
 
     @Column({type: 'varchar', length : 255})
-    username!: string;
+    firstname!: string;
+
+    @Column({type: 'varchar', length : 255})
+    lastname!: string;
 
     @Column({type: 'varchar', length: 255})
     email!: string;
 
     @Column({type: 'varchar', length: 255})
     password!: string;
+
+    @Column({type: 'varchar', length: 255})
+    town!: string;
 
     @Column({type: 'varchar', length: 255, nullable: true})
     avatar?: string;
@@ -32,6 +40,15 @@ export class User {
     role!: UserRole;
 
     @Column({ type: 'boolean', default: false})
-    activated!: boolean;
+    isActive!: boolean;
+
+    @Column({ type: 'boolean', default: false})
+    vip!: boolean;
+
+    @OneToMany(type => Attempt, attempt => attempt.user)
+    attempts!: Attempt[];
+
+    @OneToMany(type => Code, code => code.winner)
+    codes!: Code[];
 
 }

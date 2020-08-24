@@ -1,3 +1,4 @@
+import { environment } from './../core/environment';
 import express, { Application, Request, Response, Router } from 'express';
 import { AuthService } from './../services/auth.service';
 
@@ -16,8 +17,8 @@ export const AuthController = (app: Application) => {
   authRouter.post('/signup', async (req: Request, res: Response) => {
     const user = req.body;
     try {
-      await authService.signup(user);
-      res.sendStatus(204);
+      const email = await authService.signup(user);
+      res.status(200).send(email);
     } catch (error) {
       if (error.message === 'ALREADY_EXIST') {
         res.send({ Erreur: 'Informations déjà utilisées' });
@@ -32,6 +33,7 @@ export const AuthController = (app: Application) => {
     const token = req.params.token;
     try {
       await authService.isConfirmed(token);
+      return res.redirect(`http://${environment.urlFront}/compte/`);
       // Si le user a activé le mail de confirmation, il est redirigé vers la page de connexion du front
     } catch (error) {
       res.status(400).send('Lien invalide !');
@@ -41,6 +43,7 @@ export const AuthController = (app: Application) => {
   authRouter.post('/signin', async (req: Request, res: Response) => {
     const email = req.body.email;
     const password = req.body.password;
+
     try {
       const { token, user } = await authService.signIn(email, password);
       res.set('access-control-expose-headers', 'JWT_TOKEN');
@@ -56,4 +59,4 @@ export const AuthController = (app: Application) => {
   });
 
   app.use('/auth', authRouter);
-};
+}; 
