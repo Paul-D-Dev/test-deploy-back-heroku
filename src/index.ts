@@ -9,6 +9,7 @@ import loaders from './loaders';
 async function startServer() {
     // Récupération de l'application initiale
     const app = express();
+    const port = 3001;
 
     // Chargement des différent loader
     await loaders(app);
@@ -20,7 +21,7 @@ async function startServer() {
     AttemptController(app);
 
     // Démarrage du serveur une fois que tout est correctement init
-    app.listen(3000, () => console.log('Express server  is running 3000'));
+    app.listen(port, () => console.log(`Express server  is running ${port}`));
   }
 
 startServer();

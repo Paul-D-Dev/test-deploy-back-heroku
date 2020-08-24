@@ -1,8 +1,9 @@
-
 import { createConnection } from 'typeorm';
-import { User } from '../entity/user.entity';
-import { Token } from '../entity/token.entity';
 import { DATABASE } from '../config/config';
+import { Token } from '../entity/token.entity';
+import { User } from '../entity/user.entity';
+import { Attempt } from './../entity/attempt.entity';
+import { Code } from './../entity/code.entity';
 
 export default async () => {
 
@@ -18,6 +19,8 @@ export default async () => {
             // Ecrire tous noms des tables Entities
             User,
             Token,
+            Attempt,
+            Code,
         ],
         synchronize: true,
     });

@@ -45,7 +45,7 @@ export class UserService extends AbstractService {
     }
     const userUpdated = await this.repository.update(id, user);
     return this.repository.findOne(id, {
-      select: ['email', 'username', 'role', 'activated', 'avatar', 'id'],
+      select: ['email', 'firstname', 'role', 'isActive', 'avatar', 'id'],
       relations: this.relationsEntities,
     },
     );
